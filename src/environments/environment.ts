@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  apiBaseUrl: 'http://localhost:3000/api', // Backend local
+  apiBaseUrl: 'https://backend-atom-challenge.onrender.com/api', // Backend local
 };
