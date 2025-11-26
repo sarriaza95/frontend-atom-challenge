@@ -1,0 +1,60 @@
+.task-card {
+  margin-bottom: 8px;
+}
+
+.task-card.completed {
+  opacity: 0.7;
+}
+
+.task-card-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.task-checkbox {
+  margin-top: 4px;
+}
+
+.task-text {
+  flex: 1;
+}
+
+.task-title {
+  font-weight: 600;
+}
+
+.task-description {
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.7);
+  margin-top: 2px;
+}
+
+.task-meta {
+  display: block;
+  margin-top: 4px;
+  font-size: 11px;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.task-actions {
+  display: flex;
+  gap: 4px;
+}
+
+.edit-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.edit-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.full-width {
+  width: 100%;
+}

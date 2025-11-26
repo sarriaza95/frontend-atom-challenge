@@ -1,0 +1,23 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="task-form">
+  <mat-form-field class="full-width" appearance="outline">
+    <mat-label>Título de la tarea</mat-label>
+    <input matInput formControlName="title" placeholder="Ej: Comprar leche" />
+    <mat-error *ngIf="titleControl?.hasError('required')">
+      El título es obligatorio.
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="full-width" appearance="outline">
+    <mat-label>Descripción (opcional)</mat-label>
+    <textarea
+      matInput
+      rows="2"
+      formControlName="description"
+      placeholder="Detalles adicionales..."
+    ></textarea>
+  </mat-form-field>
+
+  <button mat-flat-button color="primary" type="submit">
+    Agregar tarea
+  </button>
+</form>

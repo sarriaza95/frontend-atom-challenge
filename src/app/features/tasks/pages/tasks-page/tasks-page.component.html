@@ -1,0 +1,80 @@
+<div class="tasks-wrapper">
+  <mat-card class="tasks-card">
+    <div class="tasks-header">
+      <div>
+        <h1>Mis tareas</h1>
+        <p class="subtitle" *ngIf="user">
+          Sesión iniciada como <strong>{{ user.email }}</strong>
+        </p>
+        <p class="stats" *ngIf="!loading && tasks.length">
+          {{ pendingCount }} pendiente(s) • {{ completedCount }} completada(s)
+        </p>
+      </div>
+
+      <button mat-button (click)="onLogout()">
+        Cerrar sesión
+      </button>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <section class="new-task-section">
+      <h2>Agregar nueva tarea</h2>
+      <app-task-form (submitted)="onCreateTask($event)"></app-task-form>
+    </section>
+
+    <mat-divider></mat-divider>
+
+    <section class="tasks-list-section">
+      <h2>Listado de tareas</h2>
+
+      <div *ngIf="loading">Cargando tareas...</div>
+
+      <div *ngIf="!loading && tasks.length === 0">
+        No tienes tareas aún. ¡Comienza agregando una!
+      </div>
+
+      <ng-container *ngIf="!loading && tasks.length > 0">
+        <!-- Pendientes -->
+        <div class="tasks-group">
+          <h3>Pendientes ({{ pendingCount }})</h3>
+          <div *ngIf="pendingTasks.length === 0" class="empty-group">
+            No tienes tareas pendientes. 🎉
+          </div>
+          <div *ngIf="pendingTasks.length > 0">
+            <app-task-item
+              *ngFor="let task of pendingTasks"
+              [task]="task"
+              (toggleCompleted)="onToggleCompleted($event)"
+              (update)="onUpdateTask($event)"
+              (delete)="onDeleteTask($event)">
+            </app-task-item>
+          </div>
+        </div>
+
+        <mat-divider></mat-divider>
+
+        <!-- Completadas -->
+        <div class="tasks-group">
+          <h3>Completadas ({{ completedCount }})</h3>
+          <div *ngIf="completedTasks.length === 0" class="empty-group">
+            Aún no has completado tareas.
+          </div>
+          <div *ngIf="completedTasks.length > 0">
+            <app-task-item
+              *ngFor="let task of completedTasks"
+              [task]="task"
+              (toggleCompleted)="onToggleCompleted($event)"
+              (update)="onUpdateTask($event)"
+              (delete)="onDeleteTask($event)">
+            </app-task-item>
+          </div>
+        </div>
+      </ng-container>
+    </section>
+
+    <p class="error-message" *ngIf="errorMessage">
+      {{ errorMessage }}
+    </p>
+  </mat-card>
+</div>
